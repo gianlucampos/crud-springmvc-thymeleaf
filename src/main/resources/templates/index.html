@@ -1,5 +1,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <body>
         <p th:text="#{menu.produtos}"></p>
-    </body>
+    <tbody th:remove="${#arrays.isEmpty(produtos)} ? all : 'all-but-first'">
+        <tr th:each="produto: ${produtos}">
+            <td th:text="${produto.id}"/>
+            <td th:text="${produto.nome}"/>
+            <td th:text="'R$' + ${#numbers.formatDecimal(produto.preco, 2, 'POINT', 2, 'COMMA')}"/>
+        </tr>
+    </tbody>
+</body>
 </html>

@@ -1,4 +1,4 @@
-package br.com.main;
+package br.com.crudGenerico;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

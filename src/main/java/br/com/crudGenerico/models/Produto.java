@@ -1,11 +1,24 @@
-package br.com.models;
+package br.com.crudGenerico.models;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
-public class Produto {
+@Entity(name = "produto")
+public class Produto implements Serializable {
 
+    @Id
+    @SequenceGenerator(name = "seqproduto", sequenceName = "seqproduto")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqproduto")
     private Long id;
+    @Column
     private String nome;
+    @Column
     private BigDecimal preco;
 
     public Produto() {
@@ -43,7 +56,7 @@ public class Produto {
 
     @Override
     public String toString() {
-        return "Produto [id=" + id + ", nome=" + nome + "]";
+        return "Produto [id=" + id + ", nome=" + nome + "preco=" + preco + "]";
     }
 
 }

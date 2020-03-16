@@ -1,11 +1,13 @@
-package br.com.controller;
+package br.com.crudGenerico.controller;
 
-import br.com.models.Produto;
+import br.com.crudGenerico.models.Produto;
+import br.com.crudGenerico.service.ProdutoService;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,6 +20,9 @@ import org.thymeleaf.util.StringUtils;
 @Controller
 public class ProdutoController {
 
+    @Autowired
+    private ProdutoService service;
+
     private static final List<Produto> DADOS = new ArrayList<>(Arrays.asList(
             new Produto(1L, "Smartphone Samsung Galaxy On 7", new BigDecimal(849.99)),
             new Produto(2L, "Geladeira Electrolux Frost Free", new BigDecimal(1947.50)),
@@ -27,7 +32,7 @@ public class ProdutoController {
             new Produto(6L, "Kit Pneu Aro 14 Dunlop 175/65r14", new BigDecimal(759.60))));
 
     @GetMapping("/")
-    public ModelAndView lista(Produto produto) {
+    public ModelAndView listaProdutos(Produto produto) {
         ModelAndView model = new ModelAndView("/produtos-list");
         List<Produto> lista = DADOS.stream().filter(p -> produto.getId() == null || produto.getId().equals(p.getId()))
                 .filter(p -> StringUtils.isEmpty(produto.getNome()) || p.getNome().startsWith(produto.getNome()))
@@ -36,9 +41,18 @@ public class ProdutoController {
         return model;
     }
 
-    @GetMapping("/index")
-    public String index() {
-        return "index";
+//    @GetMapping("/produtos")
+//    public ModelAndView findAll() {
+//        ModelAndView model = new ModelAndView("produtos-list");
+//        model.addObject("produtos", service.findAll());
+//        return model;
+//    }
+
+    @GetMapping("/produtos")
+    public ModelAndView find() {
+        ModelAndView model = new ModelAndView("index");
+        model.addObject("produtos", service.findAll());
+        return model;
     }
 
 }
