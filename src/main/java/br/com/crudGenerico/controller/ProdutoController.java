@@ -41,18 +41,13 @@ public class ProdutoController {
         return model;
     }
 
-//    @GetMapping("/produtos")
-//    public ModelAndView findAll() {
-//        ModelAndView model = new ModelAndView("produtos-list");
-//        model.addObject("produtos", service.findAll());
-//        return model;
-//    }
-
     @GetMapping("/produtos")
-    public ModelAndView find() {
-        ModelAndView model = new ModelAndView("index");
+    public ModelAndView findAll(Produto produto) {
+        System.out.println(produto);
+        ModelAndView model = new ModelAndView("produtos-list");
         model.addObject("produtos", service.findAll());
         return model;
     }
+
 
 }

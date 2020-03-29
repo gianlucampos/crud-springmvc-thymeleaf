@@ -56,8 +56,7 @@
 
             <form action="#" method="get" th:action="@{/produtos}" th:object="${produto}">
                 <div class="panel panel-default">
-                    <div class="panel-heading" 
-                         th:text="#{produto-lista.form.titulo}">
+                    <div class="panel-heading" th:text="#{produto-lista.form.titulo}">
                         Filtro
                     </div>
 
@@ -65,16 +64,14 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="control-label" for="codigo"
-                                           th:text="#{produto-lista.form.codigo}">Código: </label>
+                                    <label class="control-label" for="codigo"th:text="#{produto-lista.form.codigo}"/>
                                     <input class="form-control" id="codigo" th:field="*{id}" />
                                 </div>
                             </div>
 
                             <div class="col-sm-8">
                                 <div class="form-group">
-                                    <label class="control-label" for="nome"
-                                           th:text="#{produto-lista.form.nome}">Nome: </label>
+                                    <label class="control-label" for="nome"th:text="#{produto-lista.form.nome}"/>
                                     <input class="form-control" id="nome" th:field="*{nome}" />
                                 </div>
                             </div>
