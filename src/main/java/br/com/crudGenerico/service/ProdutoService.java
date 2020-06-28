@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- *
+ * Classe destinada a receber regras de negócio a respeito do Produto
  * @author gianlucampos
  */
 @Service

@@ -53,9 +53,41 @@
         </nav>
 
         <section class="container">
-            <h3 class="page-header" th:text="#{produto-lista.pagina.titulo}">
-                Página de produtos
-            </h3>
+            <h3 class="page-header" th:text="Produtos"></h3>
+
+            <form action="#" method="get" th:action="@{/produtos}" th:object="${produto}">
+                <div class="panel panel-default">
+                    <div class="panel-heading" th:text="'Busca de Produtos'">
+                        Filtro
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="codigo"th:text="#{produto-lista.form.codigo}"/>
+                                    <input class="form-control" id="codigo" th:field="*{id}" />
+                                </div>
+                            </div>
+
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="control-label" for="nome"th:text="#{produto-lista.form.nome}"/>
+                                    <input class="form-control" id="nome" th:field="*{nome}" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <button class="btn btn-default" type="submit">
+                                <span class="fa fa-search"></span>
+                                Pesquisar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>			
+
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
