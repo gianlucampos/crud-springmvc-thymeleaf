@@ -53,11 +53,11 @@
         </nav>
 
         <section class="container">
-            <h3 class="page-header" th:text="'Cadastro de Produtos'"/></h3>
+            <h3 class="page-header" th:text="'Produtos'"/></h3>
 
         <form method="POST" th:action="@{/produtos/save}" th:object="${produto}" >
             <div class="panel panel-default">
-                <div class="panel-heading" th:text="'Cadastro'"></div>
+                <div class="panel-heading" th:text="'Cadastro de produtos'"></div>
 
                 <div class="panel-body">
                     <div class="row">
@@ -68,7 +68,7 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-8">
+                        <div class="col-sm-12">
                             <div class="form-group">
                                 <label class="control-label" for="nome"th:text="#{produto-lista.form.nome}"/>
                                 <input class="form-control" id="nome" th:field="*{nome}" />

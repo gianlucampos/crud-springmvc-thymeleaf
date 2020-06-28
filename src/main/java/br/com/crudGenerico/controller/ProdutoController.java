@@ -2,17 +2,11 @@ package br.com.crudGenerico.controller;
 
 import br.com.crudGenerico.models.Produto;
 import br.com.crudGenerico.service.ProdutoService;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.thymeleaf.util.StringUtils;
 
 /**
  *
@@ -25,16 +19,15 @@ public class ProdutoController {
     private ProdutoService service;
 
     @GetMapping("/")
-    public ModelAndView listaProdutos() {
-        ModelAndView model = new ModelAndView("/produtos-list");
+    public ModelAndView listaProdutos(Produto produto) {
+        ModelAndView model = new ModelAndView("/produtos-search");
         model.addObject("produtos", service.findAll());
         return model;
     }
 
     @GetMapping("/produtos")
     public ModelAndView findAll(Produto produto) {
-        System.out.println(produto);
-        ModelAndView model = new ModelAndView("produtos-search");
+        ModelAndView model = new ModelAndView("produtos-list");
         model.addObject("produtos", service.findAll());
         return model;
     }
