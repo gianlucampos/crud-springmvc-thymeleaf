@@ -61,6 +61,7 @@
                         <th th:text="#{produto-lista.tabela.titulo.codigo}"/>
                         <th th:text="#{produto-lista.tabela.titulo.nome}"/>
                         <th th:text="#{produto-lista.tabela.titulo.preco}"/>
+                        <th th:text=" 'Ação' "/>
                     </tr>
                 </thead>
 
@@ -69,6 +70,12 @@
                         <td th:text="${produto.id}"/>
                         <td th:text="${produto.nome}"/>
                         <td th:text="'R$' + ${#numbers.formatDecimal(produto.preco, 3, 'POINT', 2, 'COMMA')}"/>
+                        <td>
+                            <div class="btn-group pull-center">
+                                <a class="btn btn-sm btn-primary" th:href="@{produtos/edit/{id}(id=${produto.id})}" >Editar</a>
+                                <a class="delete btn btn-sm btn-danger" th:href="@{produtos/delete/{id}(id=${produto.id})}">Excluir</a>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>
