@@ -13,8 +13,8 @@ import javax.persistence.SequenceGenerator;
 public class Produto implements Serializable {
 
     @Id
-    @SequenceGenerator(name = "seqproduto", sequenceName = "seqproduto")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqproduto")
+    @SequenceGenerator(name = "seqproduto", sequenceName = "seqproduto", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seqproduto")
     private Long id;
     @Column
     private String nome;
@@ -24,8 +24,7 @@ public class Produto implements Serializable {
     public Produto() {
     }
 
-    public Produto(Long id, String nome, BigDecimal preco) {
-        this.id = id;
+    public Produto(String nome, BigDecimal preco) {
         this.nome = nome;
         this.preco = preco;
     }
