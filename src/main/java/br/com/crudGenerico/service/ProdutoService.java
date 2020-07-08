@@ -8,11 +8,12 @@ import org.springframework.stereotype.Service;
 
 /**
  * Classe destinada a receber regras de negócio a respeito do Produto
+ *
  * @author gianlucampos
  */
 @Service
 public class ProdutoService {
-    
+
     @Autowired
     private ProdutoRepository repository;
 
@@ -30,6 +31,10 @@ public class ProdutoService {
 
     public void delete(Long id) {
         repository.deleteById(id);
+    }
+    
+    public List<Produto> findByNome(String nome){
+        return repository.findByNome(nome);
     }
 
 }

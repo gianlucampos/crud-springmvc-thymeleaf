@@ -3,11 +3,14 @@ package br.com.crudGenerico.controller;
 import br.com.crudGenerico.models.Produto;
 import br.com.crudGenerico.service.ProdutoService;
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
@@ -23,12 +26,26 @@ public class ProdutoController {
     private ProdutoService service;
 
     @GetMapping("/")
-    public ModelAndView searchProduto(Produto produto) {
+    public ModelAndView index() {
         if (service.findAll().isEmpty()) {
             criaProdutos();
         }
         ModelAndView model = new ModelAndView("produtos-search");
-        model.addObject("produto", produto);
+        return model;
+    }
+
+    @PostMapping("/find/{id}/{nome}")
+    public ModelAndView findProduto(@RequestParam("id") Long id, @RequestParam("nome") String nome) {
+        ModelAndView model = new ModelAndView("produtos-list");
+        List<Produto> produtos = service.findAll();
+        if (id != null) {
+            produtos = Arrays.asList(service.getOne(id));
+        }
+        if (!"".equals(nome.trim())) {
+            nome = nome.trim().toLowerCase();
+            produtos = service.findByNome("%" + nome + "%%");
+        }
+        model.addObject("produtos", produtos);
         return model;
     }
 
@@ -60,7 +77,7 @@ public class ProdutoController {
     }
 
     @PostMapping("/produtos/delete/{id}")
-    public RedirectView deleteProduto(@PathVariable("id") Long id,RedirectAttributes redirectAttributes) {
+    public RedirectView deleteProduto(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
         service.delete(id);
         redirectAttributes.addFlashAttribute("mensagem", "Removido com sucesso!");
         return new RedirectView("/produtos", true);
