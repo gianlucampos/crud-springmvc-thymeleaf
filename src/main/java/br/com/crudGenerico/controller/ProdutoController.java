@@ -3,6 +3,7 @@ package br.com.crudGenerico.controller;
 import br.com.crudGenerico.models.Produto;
 import br.com.crudGenerico.service.ProdutoService;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,11 @@ public class ProdutoController {
         ModelAndView model = new ModelAndView("produtos-list");
         List<Produto> produtos = service.findAll();
         if (id != null) {
-            produtos = Arrays.asList(service.getOne(id));
+            if (service.findById(id).isPresent()) {
+                produtos = Arrays.asList(service.findById(id).get());
+            } else {
+                produtos = new ArrayList<>();
+            }
         }
         if (!"".equals(nome.trim())) {
             nome = nome.trim().toLowerCase();
@@ -72,7 +77,7 @@ public class ProdutoController {
 
     @PostMapping("/produtos/edit/{id}")
     public ModelAndView editProduto(@PathVariable("id") Long id) {
-        Produto produto = (Produto) service.getOne(id);
+        Produto produto = (Produto) service.findById(id).get();
         return addProduto(produto);
     }
 

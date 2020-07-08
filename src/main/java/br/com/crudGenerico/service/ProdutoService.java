@@ -3,6 +3,7 @@ package br.com.crudGenerico.service;
 import br.com.crudGenerico.models.Produto;
 import br.com.crudGenerico.repository.ProdutoRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +22,8 @@ public class ProdutoService {
         return repository.findAll();
     }
 
-    public Produto getOne(Long id) {
-        return repository.getOne(id);
+    public Optional<Produto> findById(Long id) {
+        return repository.findById(id);
     }
 
     public Produto save(Produto produto) {
