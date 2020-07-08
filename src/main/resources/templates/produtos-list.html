@@ -54,7 +54,9 @@
 
         <section class="container">
             <h3 class="page-header" th:text="Produtos"></h3>
-            <!--<p th:text="${mensagem}" class="alert alert-success"></p>-->
+            <div th:if="${mensagem != null}">
+                <p th:text="${mensagem}" class="alert alert-success"></p>
+            </div>
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
@@ -72,12 +74,12 @@
                         <td th:text="'R$' + ${#numbers.formatDecimal(produto.preco, 3, 'POINT', 2, 'COMMA')}"/>
                         <td>
                             <div class="btn-group pull-center">
-                                <form name="formEdit" th:object="${produto}" th:action="@{produtos/edit/{id}(id=${produto.id})}" th:method="post">
+                                <form name="formEdit" th:object="${produto}" th:action="@{produtos/edit/{id}(id=${produto.id})}" th:method="POST">
                                     <button class="btn btn-sm btn-primary" type="submit">Editar</button>
                                 </form>
                             </div>
                             <div class="btn-group pull-center">
-                                <form name="formDelete" th:object="${produto}" th:action="@{produtos/delete/{id}(id=${produto.id})}" th:method="delete">
+                                <form name="formDelete" th:object="${produto}" th:action="@{produtos/delete/{id}(id=${produto.id})}" th:method="POST">
                                     <button class="delete btn btn-sm btn-danger" type="submit">Excluir</button>
                                 </form>
                             </div>

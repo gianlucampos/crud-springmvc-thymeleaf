@@ -5,7 +5,6 @@ import br.com.crudGenerico.service.ProdutoService;
 import java.math.BigDecimal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,7 +49,7 @@ public class ProdutoController {
     @PostMapping("/produtos/save")
     public RedirectView saveProduto(Produto produto, RedirectAttributes redirectAttributes) {
         service.save(produto);
-        redirectAttributes.addFlashAttribute("mensagem", "Cadastro feito com sucesso!");
+        redirectAttributes.addFlashAttribute("mensagem", "Operação realizada com sucesso!");
         return new RedirectView("/produtos", true);
     }
 
@@ -60,10 +59,11 @@ public class ProdutoController {
         return addProduto(produto);
     }
 
-    @DeleteMapping("/produtos/delete/{id}")
-    public void deleteProduto(@PathVariable("id") Long id) {
+    @PostMapping("/produtos/delete/{id}")
+    public RedirectView deleteProduto(@PathVariable("id") Long id,RedirectAttributes redirectAttributes) {
         service.delete(id);
-//        return findAll(service.findAll().get(0));
+        redirectAttributes.addFlashAttribute("mensagem", "Removido com sucesso!");
+        return new RedirectView("/produtos", true);
     }
 
     private void criaProdutos() {
