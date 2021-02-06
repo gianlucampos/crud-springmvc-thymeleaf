@@ -1,5 +1,6 @@
 package br.com.crudGenerico.controller;
 
+import br.com.crudGenerico.dto.ProdutoDTO;
 import br.com.crudGenerico.models.Produto;
 import br.com.crudGenerico.service.ProdutoService;
 import java.math.BigDecimal;
@@ -27,15 +28,14 @@ public class ProdutoController {
     private ProdutoService service;
 
     @GetMapping("/")
-    public ModelAndView index() {
+    public String index() {
         if (service.findAll().isEmpty()) {
             criaProdutos();
         }
-        ModelAndView model = new ModelAndView("produtos-search");
-        return model;
+        return "produtos-search";
     }
 
-    @PostMapping("/find/{id}/{nome}")
+    @GetMapping("/find/{id}/{nome}")
     public ModelAndView findProduto(@RequestParam("id") Long id, @RequestParam("nome") String nome) {
         ModelAndView model = new ModelAndView("produtos-list");
         List<Produto> produtos = service.findAll();
@@ -62,14 +62,15 @@ public class ProdutoController {
     }
 
     @GetMapping("/produtos/add")
-    public ModelAndView addProduto(Produto produto) {
+    public ModelAndView addProduto(ProdutoDTO produto) {
         ModelAndView model = new ModelAndView("produtos-add");
         model.addObject("produto", produto);
         return model;
     }
 
     @PostMapping("/produtos/save")
-    public RedirectView saveProduto(Produto produto, RedirectAttributes redirectAttributes) {
+    public RedirectView saveProduto(ProdutoDTO produtoDTO, RedirectAttributes redirectAttributes) {
+        Produto produto = new Produto(produtoDTO);
         service.save(produto);
         redirectAttributes.addFlashAttribute("mensagem", "Operação realizada com sucesso!");
         return new RedirectView("/produtos", true);
@@ -78,7 +79,8 @@ public class ProdutoController {
     @PostMapping("/produtos/edit/{id}")
     public ModelAndView editProduto(@PathVariable("id") Long id) {
         Produto produto = (Produto) service.findById(id).get();
-        return addProduto(produto);
+        ProdutoDTO produtoDTO = new ProdutoDTO(produto);
+        return addProduto(produtoDTO);
     }
 
     @PostMapping("/produtos/delete/{id}")

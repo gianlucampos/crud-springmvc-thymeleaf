@@ -1,5 +1,6 @@
 package br.com.crudGenerico.models;
 
+import br.com.crudGenerico.dto.ProdutoDTO;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Column;
@@ -9,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
-@Entity(name = "Produto")
+@Entity
 public class Produto implements Serializable {
 
     @Id
@@ -29,6 +30,12 @@ public class Produto implements Serializable {
         this.preco = preco;
     }
 
+    public Produto(ProdutoDTO produto) {
+        this.id = !"".equals(produto.getId()) ? Long.parseLong(produto.getId()) : null;
+        this.nome = produto.getNome();
+        this.preco = new BigDecimal(produto.getPreco().replace(".", "").replace(",", "."));
+    }
+    
     public Long getId() {
         return id;
     }

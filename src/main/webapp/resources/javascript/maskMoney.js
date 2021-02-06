@@ -6,13 +6,13 @@ $("#preco").maskMoney({
     suffix: "",
 
     // Delay formatting of text field until focus leaves the field
-    formatOnBlur: false,
+    formatOnBlur: true,
 
     // Prevent users from inputing zero
     allowZero: false,
 
     // Prevent users from inputing negative values
-    allowNegative: true,
+    allowNegative: false,
 
     // Allow empty input values, so that when you delete the number it doesn't reset to 0.00. 
     allowEmpty: false,
@@ -27,10 +27,10 @@ $("#preco").maskMoney({
     thousands: '.',
 
     // The decimal separator
-    decimal: '.',
+    decimal: ',',
 
     // How many decimal places are allowed
-    precision: 0,
+    precision: 2,
 
     // Set if the symbol will stay in the field after the user exits the field. 
     affixesStay: false,

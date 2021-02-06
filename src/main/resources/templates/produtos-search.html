@@ -55,42 +55,39 @@
         <section class="container">
             <h3 class="page-header" th:text="Produtos"></h3>
 
-            <form action="#" method="POST" th:action="@{find/{id}/{nome}}">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" th:text="'Busca de Produtos'">
-                            Filtro
+            <form action="#" method="GET" th:action="@{find/{id}/{nome}}">
+                <div class="panel panel-default">
+                    <div class="panel-heading" th:text="'Busca de Produtos'">
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label class="control-label" for="codigo"th:text="#{produto-lista.form.codigo}"/>
+                                    <input class="form-control" id="id" name="id"/>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="control-label" for="nome"th:text="#{produto-lista.form.nome}"/>
+                                    <input class="form-control" id="nome" name="nome"/>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-sm-2">
-                                    <div class="form-group">
-                                        <label class="control-label" for="codigo"th:text="#{produto-lista.form.codigo}"/>
-                                        <input class="form-control" id="id" name="id"/>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-8">
-                                    <div class="form-group">
-                                        <label class="control-label" for="nome"th:text="#{produto-lista.form.nome}"/>
-                                        <input class="form-control" id="nome" name="nome"/>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <button class="btn btn-default" type="submit">
-                                    <span class="fa fa-search"></span>
-                                    Pesquisar
-                                </button>
-                            </div>
+                        <div class="form-group">
+                            <button class="btn btn-default" type="submit">
+                                <span class="fa fa-search"></span>
+                                Pesquisar
+                            </button>
                         </div>
                     </div>
-                </form>			
+                </div>
+            </form>			
 
         </section>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>		
     </body>
 </html>

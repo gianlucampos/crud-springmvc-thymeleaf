@@ -71,7 +71,7 @@
                     <tr th:each="produto: ${produtos}">
                         <td th:text="${produto.id}"/>
                         <td th:text="${produto.nome}"/>
-                        <td th:text="'R$ ' + ${#numbers.formatDecimal(produto.preco, 3, 'POINT', 2, 'COMMA')}"/>
+                        <td th:text="'R$ ' + ${#numbers.formatDecimal(produto.preco, 1, 'POINT', 2, 'COMMA')}"/>
                         <td>
                             <div class="btn-group pull-center">
                                 <form name="formEdit" th:object="${produto}" th:action="@{produtos/edit/{id}(id=${produto.id})}" th:method="POST">
@@ -88,7 +88,5 @@
                 </tbody>
             </table>
         </section>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>		
     </body>
 </html>
