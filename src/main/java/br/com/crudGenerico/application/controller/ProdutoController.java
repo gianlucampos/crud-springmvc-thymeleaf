@@ -1,13 +1,11 @@
-package br.com.crudGenerico.controller;
+package br.com.crudGenerico.application.controller;
 
-import br.com.crudGenerico.dto.ProdutoDTO;
-import br.com.crudGenerico.models.Produto;
-import br.com.crudGenerico.service.ProdutoService;
-import java.math.BigDecimal;
+import br.com.crudGenerico.application.dto.ProdutoDTO;
+import br.com.crudGenerico.domain.models.Produto;
+import br.com.crudGenerico.domain.service.ProdutoService;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,20 +16,19 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 /**
- *
  * @author gianlucampos
  */
 @Controller
 public class ProdutoController {
 
-    @Autowired
-    private ProdutoService service;
+    private final ProdutoService service;
+
+    public ProdutoController(ProdutoService service) {
+        this.service = service;
+    }
 
     @GetMapping("/")
     public String index() {
-        if (service.findAll().isEmpty()) {
-            criaProdutos();
-        }
         return "produtos-search";
     }
 
@@ -90,16 +87,4 @@ public class ProdutoController {
         return new RedirectView("/produtos", true);
     }
 
-    private void criaProdutos() {
-        Produto produto = new Produto("Iphone 7", new BigDecimal(5000.00));
-        service.save(produto);
-        produto = new Produto("Android 10", new BigDecimal(2000.00));
-        service.save(produto);
-        produto = new Produto("SSD 480 gb", new BigDecimal(500.00));
-        service.save(produto);
-        produto = new Produto("Memória Ram 16gb", new BigDecimal(400.00));
-        service.save(produto);
-        produto = new Produto("Teclado RGB", new BigDecimal(200.00));
-        service.save(produto);
-    }
 }

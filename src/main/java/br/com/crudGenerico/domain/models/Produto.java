@@ -1,6 +1,6 @@
-package br.com.crudGenerico.models;
+package br.com.crudGenerico.domain.models;
 
-import br.com.crudGenerico.dto.ProdutoDTO;
+import br.com.crudGenerico.application.dto.ProdutoDTO;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Column;

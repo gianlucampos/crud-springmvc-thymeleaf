@@ -1,6 +1,6 @@
-package br.com.crudGenerico.repository;
+package br.com.crudGenerico.domain.repository;
 
-import br.com.crudGenerico.models.Produto;
+import br.com.crudGenerico.domain.models.Produto;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

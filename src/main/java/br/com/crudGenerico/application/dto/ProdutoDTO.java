@@ -1,6 +1,6 @@
-package br.com.crudGenerico.dto;
+package br.com.crudGenerico.application.dto;
 
-import br.com.crudGenerico.models.Produto;
+import br.com.crudGenerico.domain.models.Produto;
 import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;

@@ -1,7 +1,7 @@
-package br.com.crudGenerico.service;
+package br.com.crudGenerico.domain.service;
 
-import br.com.crudGenerico.models.Produto;
-import br.com.crudGenerico.repository.ProdutoRepository;
+import br.com.crudGenerico.domain.models.Produto;
+import br.com.crudGenerico.domain.repository.ProdutoRepository;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
