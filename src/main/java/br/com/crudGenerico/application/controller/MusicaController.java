@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +24,7 @@ public class MusicaController {
     public ModelAndView getMusicas() {
         ModelAndView musicas = new ModelAndView("musicas");
         musicas.addObject("musicas", musicaService.findAll());
+        musicas.addObject("musica", new Musica());
         return musicas;
     }
 
@@ -39,6 +41,7 @@ public class MusicaController {
         }
         ModelAndView mv = new ModelAndView("musicas");
         mv.addObject("musicas", musicas);
+        mv.addObject("musica", new Musica());
         return mv;
     }
 
@@ -46,6 +49,22 @@ public class MusicaController {
     public RedirectView deleteMusica(@PathVariable("id") Long id) {
         musicaService.delete(id);
         return new RedirectView("/musicas", true);
+    }
+
+    @PostMapping("/addMusica")
+    public String saveMusica(Musica musica) {
+        musicaService.save(musica);
+        return "redirect:/musicas";
+    }
+
+    @PostMapping("**/musicas/edit/{id}")
+    public String updateMusica(@PathVariable("id") long id, Model model) {
+        Musica musica = musicaService.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Invalid musica id:" + id));
+
+        model.addAttribute("musica", musica);
+        model.addAttribute("musicas", musicaService.findAll());
+        return "musicas";
     }
 
 }
