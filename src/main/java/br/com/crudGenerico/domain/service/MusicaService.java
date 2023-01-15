@@ -22,6 +22,7 @@ public class MusicaService {
     }
 
     public List<Musica> findByNome(String nome) {
+        nome = "%".concat(nome).concat("%%");
         return repository.findByNome(nome);
     }
 

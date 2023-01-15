@@ -7,14 +7,16 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Getter
+@Setter
 public class Musica {
 
     @Id

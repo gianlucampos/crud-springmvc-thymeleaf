@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MusicaRepository extends JpaRepository<Musica, Long> {
 
-    @Query("SELECT m FROM Musica m WHERE lower(m.nome) like :nome")
+    @Query("SELECT m FROM Musica m WHERE lower(m.nome) like %:nome%")
     List<Musica> findByNome(@Param("nome") String nome);
 }
