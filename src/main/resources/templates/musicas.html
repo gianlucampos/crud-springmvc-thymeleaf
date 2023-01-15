@@ -87,8 +87,8 @@
                 <div class="btn-group pull-center">
                     <form name="formDelete"
                           th:object="${musicas}"
-                          th:action="@{musicas/{id}(id=${musica.id})}"
-                          th:method="DELETE">
+                          th:action="@{musicas/delete/{id}(id=${musica.id})}"
+                          th:method="POST">
                         <button class="delete btn btn-sm btn-danger" type="submit">Excluir</button>
                     </form>
                 </div>
