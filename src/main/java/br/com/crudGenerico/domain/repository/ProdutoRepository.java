@@ -16,5 +16,5 @@ import org.springframework.stereotype.Repository;
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
     @Query("SELECT p FROM Produto p WHERE lower(p.nome) like :nome")
-    public List<Produto> findByNome(@Param("nome") String nome);
+    List<Produto> findByNome(@Param("nome") String nome);
 }

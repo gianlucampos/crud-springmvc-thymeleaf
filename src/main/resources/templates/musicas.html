@@ -14,7 +14,7 @@
 			type="text/javascript"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" th:href="@{/css/style.css}">
-	<title th:text="#{sistema.titulo}"></title>
+	<title th:text="#{musica.pagina.titulo}"></title>
 	<title>Musicas</title>
 </head>
 
@@ -101,7 +101,7 @@
 <section class="container">
 	<form method="POST" th:action="@{/addMusica}" th:object="${musica}">
 		<div class="panel panel-default">
-			<div class="panel-heading" th:text="'Cadastro de produtos'"></div>
+			<div class="panel-heading" th:text="'Cadastro de músicas'"></div>
 			
 			<div class="panel-body">
 				<div class="row">

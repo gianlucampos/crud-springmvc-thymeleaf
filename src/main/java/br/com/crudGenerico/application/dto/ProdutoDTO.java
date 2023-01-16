@@ -1,51 +1,27 @@
 package br.com.crudGenerico.application.dto;
 
+import br.com.crudGenerico.common.utils.FormatterUtils;
 import br.com.crudGenerico.domain.models.Produto;
 import java.io.Serializable;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.util.Locale;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
 public class ProdutoDTO implements Serializable {
 
     private String id;
     private String nome;
     private String preco;
 
-    public ProdutoDTO() {
-    }
-
-    public ProdutoDTO(Produto produto) {
-        if (produto != null) {
-            this.id = produto.getId().toString();
-            this.nome = produto.getNome();
-            DecimalFormat df = new DecimalFormat("#,##0.00", DecimalFormatSymbols.getInstance(Locale.forLanguageTag("pt-BR")));
-            this.preco = df.format(produto.getPreco());
-        }
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getPreco() {
-        return preco;
-    }
-
-    public void setPreco(String preco) {
-        this.preco = preco;
+    public static Produto fromDTO(ProdutoDTO dto) {
+        Produto produto = new Produto();
+        produto.setId(Long.valueOf(dto.getId()));
+        produto.setNome(dto.getNome());
+        produto.setPreco(FormatterUtils.parseCurrencyBRL(dto.getPreco()));
+        return produto;
     }
 
     @Override
